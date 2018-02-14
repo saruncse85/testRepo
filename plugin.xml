@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Sample Category"
+            id="Test.commands.category">
+      </category>
+      <command
+            name="Find Method References"
+            categoryId="Test.commands.category"
+            id="Test.commands.FindMethodHierarchy">
+      </command>
+      
+      <category name ="Context Menu"
+      	id="Octane.findActionClass">      	
+      </category>  
+      <command
+      	name="Referenced Action Classes"
+      	categoryId="Octane.findActionClass"
+      	id="Test.commands.FindMethodRootClass">      		
+      </command>
+
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="Test.commands.FindMethodHierarchy"
+            class="test.handlers.SampleHandler">
+      </handler>
+      
+      <handler commandId="Test.commands.FindMethodRootClass"
+      		class="test.handlers.OctaneFindActionHandler">
+      </handler>
+      
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="Test.commands.FindMethodHierarchy"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      
+      <key
+            commandId="Test.commands.FindMethodRootClass"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+7"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Octane"
+               mnemonic="O"
+               id="Test.menus.sampleMenu">
+            <command
+                  commandId="Test.commands.FindMethodHierarchy"
+                  mnemonic="R"
+                  id="Test.menus.sampleCommand">
+            </command>
+            
+         </menu>
+      </menuContribution>  
+      
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="Test.toolbars.sampleToolbar">
+            <command
+                  commandId="Test.commands.FindMethodHierarchy"
+                  icon="icons/sample.png"
+                  tooltip="Find Method References"
+                  id="Test.toolbars.sampleCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+      
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               label="Octane"
+               mnemonic="O"
+               id="Test.menus.findActionClass">
+            <command
+                  commandId="Test.commands.FindMethodRootClass"
+                  mnemonic="R"
+                  id="Test.menus.sampleCommand1">
+            </command>
+            
+         </menu>
+      </menuContribution>  
+      
+   </extension>
+
+</plugin>
